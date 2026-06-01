@@ -1,0 +1,112 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Runtime area semantic tokens */
+  --color-runtime-js: var(--runtime-js);
+  --color-runtime-api: var(--runtime-api);
+  --color-runtime-micro: var(--runtime-micro);
+  --color-runtime-macro: var(--runtime-macro);
+  --color-runtime-console: var(--runtime-console);
+  --color-runtime-network: var(--runtime-network);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Dark base (default) */
+  --background: oklch(0.16 0.02 260);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.20 0.025 260);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.20 0.025 260);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.70 0.18 240);
+  --primary-foreground: oklch(0.12 0.02 260);
+  --secondary: oklch(0.26 0.03 260);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.24 0.025 260);
+  --muted-foreground: oklch(0.68 0.02 255);
+  --accent: oklch(0.30 0.04 260);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.30 0.03 260 / 60%);
+  --input: oklch(0.30 0.03 260);
+  --ring: oklch(0.70 0.18 240);
+
+  /* Runtime areas — vivid, high contrast */
+  --runtime-js: oklch(0.70 0.18 240);        /* Blue */
+  --runtime-api: oklch(0.75 0.18 55);        /* Orange */
+  --runtime-micro: oklch(0.70 0.22 305);     /* Purple */
+  --runtime-macro: oklch(0.68 0.22 25);      /* Red */
+  --runtime-console: oklch(0.78 0.18 145);   /* Green */
+  --runtime-network: oklch(0.78 0.14 200);   /* Cyan */
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
+  body { font-family: var(--font-display); }
+}
+
+/* Subtle grid backdrop */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.30 0.03 260 / 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.30 0.03 260 / 0.25) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.glow-js     { box-shadow: 0 0 0 1px var(--runtime-js), 0 0 24px -4px var(--runtime-js); }
+.glow-api    { box-shadow: 0 0 0 1px var(--runtime-api), 0 0 24px -4px var(--runtime-api); }
+.glow-micro  { box-shadow: 0 0 0 1px var(--runtime-micro), 0 0 24px -4px var(--runtime-micro); }
+.glow-macro  { box-shadow: 0 0 0 1px var(--runtime-macro), 0 0 24px -4px var(--runtime-macro); }
+.glow-console{ box-shadow: 0 0 0 1px var(--runtime-console), 0 0 24px -4px var(--runtime-console); }
+.glow-network{ box-shadow: 0 0 0 1px var(--runtime-network), 0 0 24px -4px var(--runtime-network); }
+
+/* Pulse for active line */
+@keyframes line-pulse {
+  0%, 100% { background-color: oklch(0.70 0.18 240 / 0.10); }
+  50%      { background-color: oklch(0.70 0.18 240 / 0.28); }
+}
+.line-active { animation: line-pulse 1.2s ease-in-out infinite; }
+
+/* Animated dashed connector */
+@keyframes dash-flow { to { stroke-dashoffset: -24; } }
+.flow-line { stroke-dasharray: 6 6; animation: dash-flow 1s linear infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: oklch(0.30 0.03 260); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
