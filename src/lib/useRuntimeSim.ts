@@ -29,23 +29,32 @@ function applyStep(state: RuntimeState, step: Step): RuntimeState {
     network: [...state.network],
     console: [...state.console],
   };
-  const a = step.action;
+  const actionToMake = step?.action;
   const removeFrom = (area: AreaKey, id: string) => {
     s[area] = s[area].filter((t) => t.id !== id);
   };
-  switch (a.type) {
+  switch (actionToMake?.type) {
     case "push":
-      s[a.area] = [...s[a.area], { id: a.id, text: a.text, color: a.color }];
+      s[actionToMake?.area] = [
+        ...s[actionToMake?.area],
+        { id: actionToMake?.id, text: actionToMake?.text, color: actionToMake?.color },
+      ];
       break;
     case "pop":
-      removeFrom(a.area, a.id);
+      removeFrom(actionToMake?.area, actionToMake?.id);
       break;
     case "move":
-      removeFrom(a.from, a.id);
-      s[a.to] = [...s[a.to], { id: a.id, text: a.text, color: a.color }];
+      removeFrom(actionToMake?.from, actionToMake?.id);
+      s[actionToMake?.to] = [
+        ...s[actionToMake?.to],
+        { id: actionToMake?.id, text: actionToMake?.text, color: actionToMake?.color },
+      ];
       break;
     case "log":
-      s.console = [...s.console, { id: `log-${s.console.length}-${a.text}`, text: a.text }];
+      s.console = [
+        ...s.console,
+        { id: `log-${s.console.length}-${actionToMake?.text}`, text: actionToMake?.text },
+      ];
       break;
     case "tick":
       break;
