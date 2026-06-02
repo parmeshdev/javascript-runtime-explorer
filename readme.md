@@ -2,6 +2,8 @@
 
 > Visualize what happens behind the scenes when JavaScript, Browser APIs, the Event Loop, Rendering Engine, and React execute your code.
 
+<img width="1427" height="881" alt="image" src="https://github.com/user-attachments/assets/562f36e2-4a3e-4621-a271-dcd26fd0a49f" />
+
 ---
 
 ## Overview
