@@ -6,6 +6,12 @@
 
 ## Overview
 
+Current Status:
+
+The application currently focuses on visualizing carefully curated JavaScript and browser runtime examples.
+
+Custom code editing and execution are planned for future releases once the simulation engine and visualization accuracy are fully stabilized.
+
 JavaScript developers often learn concepts such as:
 
 * Call Stack
@@ -38,13 +44,13 @@ This application transforms those concepts into animated experiences.
 
 Users can:
 
-* Paste JavaScript code
+* Explore curated JavaScript examples
 * Play execution step-by-step
 * Visualize runtime behavior
 * Understand browser internals
 * Learn React internals visually
 
-The experience should feel closer to an interactive animation than a traditional code editor.
+The initial version focuses on guided exploration through predefined examples. Custom code editing will be introduced in a future release.
 
 ---
 
@@ -98,21 +104,23 @@ Users should be able to:
 
 # Features
 
-## Code Editor
+## Code Viewer
 
 Users can:
 
-* Paste JavaScript
-* Modify examples
 * Select built-in examples
+* Inspect source code
 * Replay execution
+* Observe execution step-by-step
 
 Features:
 
 * Syntax highlighting
-* Editable code
+* Read-only code view
 * Line highlighting
 * Execution tracking
+
+The current version intentionally uses predefined examples to provide a consistent learning experience and accurate runtime visualizations. Support for custom JavaScript input is planned for future releases.
 
 ---
 
@@ -436,8 +444,8 @@ Frontend:
 
 Future:
 
+* Monaco Editor (for custom code execution)
 * React Flow
-* Monaco Editor
 * AST Parser
 * AI-powered explanations
 
